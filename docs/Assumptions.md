@@ -1,0 +1,4 @@
+- property prices and bank statments both use the same currency
+- if the monetary amount does not contain a currency symbol, GBP is used by default
+- _recurring income_ consists only of entries of type "Bank Credit"
+- _recurring expenses_ consists only of entries of type "Direct Debit"; while "Standing Order" entries can also be recurring, this entry is likely to be for rental payments and as such should be excluded when considering property affordability
