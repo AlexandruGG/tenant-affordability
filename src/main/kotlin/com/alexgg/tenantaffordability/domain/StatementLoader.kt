@@ -8,6 +8,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper
 import com.fasterxml.jackson.dataformat.csv.CsvSchema
 import org.springframework.core.io.ResourceLoader
 import org.springframework.stereotype.Component
+import java.io.InputStreamReader
 import java.time.LocalDate
 import javax.money.MonetaryAmount
 
@@ -27,11 +28,15 @@ class StatementLoader(private val mapper: CsvMapper, private val resourceLoader:
     }
 
     override fun load(path: String): List<Statement> {
-        val lines = resourceLoader.getResource(path).file.readLines().drop(HEADER_LINES).joinToString("\n")
+        val lines =
+            InputStreamReader(resourceLoader.getResource(path).inputStream)
+                .readLines()
+                .drop(HEADER_LINES)
+
         return mapper
             .readerFor(Statement::class.java)
             .with(schema)
-            .readValues<Statement>(lines)
+            .readValues<Statement>(lines.joinToString("\n"))
             .readAll()
     }
 }

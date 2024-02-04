@@ -9,11 +9,9 @@ class TenantAffordabilityService(
     private val propertyLoader: CsvFileLoader<Property>,
     private val affordabilityCalculator: AffordabilityCalculator,
 ) {
-    fun run() {
-        val statements = statementLoader.load("/bank_statement.csv")
-        val properties = propertyLoader.load("/properties.csv")
-
-        val affordableProperties = affordabilityCalculator.compute(statements, properties)
-        println(affordableProperties)
-    }
+    fun compute() =
+        affordabilityCalculator.compute(
+            statementLoader.load("/bank_statement.csv"),
+            propertyLoader.load("/properties.csv"),
+        )
 }

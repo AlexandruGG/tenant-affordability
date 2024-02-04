@@ -10,7 +10,7 @@ import javax.money.MonetaryAmount
 class MonetaryAmountDeserializer : StdDeserializer<MonetaryAmount>(MonetaryAmount::class.java) {
     override fun deserialize(
         parser: JsonParser,
-        ctxt: DeserializationContext,
+        context: DeserializationContext,
     ): MonetaryAmount {
         val amountString = parser.readValueAs(String::class.java)
         val currency = amountString.toCurrency()

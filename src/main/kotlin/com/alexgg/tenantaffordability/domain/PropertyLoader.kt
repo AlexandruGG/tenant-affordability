@@ -24,7 +24,7 @@ class PropertyLoader(private val mapper: CsvMapper, private val resourceLoader: 
         mapper
             .readerFor(Property::class.java)
             .with(schema)
-            .readValues<Property>(resourceLoader.getResource(path).file)
+            .readValues<Property>(resourceLoader.getResource(path).inputStream)
             .readAll()
 }
 

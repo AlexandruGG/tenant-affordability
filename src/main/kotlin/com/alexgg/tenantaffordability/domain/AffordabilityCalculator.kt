@@ -27,7 +27,7 @@ class AffordabilityCalculator {
         expensesByMonth: Map<Month, FastMoney>,
     ): FastMoney {
         val averageIncome = incomeByMonth.values.reduce { acc, it -> acc.add(it) }.divide(incomeByMonth.size)
-        val averageExpenses = expensesByMonth.values.reduce { acc, it -> acc.add(it) }.divide(incomeByMonth.size)
+        val averageExpenses = expensesByMonth.values.reduce { acc, it -> acc.add(it) }.divide(expensesByMonth.size)
 
         return averageIncome.subtract(averageExpenses)
     }
